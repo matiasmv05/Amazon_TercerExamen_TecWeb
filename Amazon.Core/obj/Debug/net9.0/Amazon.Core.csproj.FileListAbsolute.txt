@@ -1,0 +1,12 @@
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\bin\Debug\net9.0\Amazon.Core.deps.json
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\bin\Debug\net9.0\Amazon.Core.dll
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\bin\Debug\net9.0\Amazon.Core.pdb
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\Amazon.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\Amazon.Core.AssemblyInfoInputs.cache
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\Amazon.Core.AssemblyInfo.cs
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\Amazon.Core.csproj.CoreCompileInputs.cache
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\Amazon.Core.dll
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\refint\Amazon.Core.dll
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\Amazon.Core.pdb
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\AMAZON\Amazon.Core\obj\Debug\net9.0\ref\Amazon.Core.dll
+C:\Users\windows11\Desktop\4 Semestre\TEC WEB\Amazon\Amazon.Core\obj\Debug\net9.0\Amazon.Core.sourcelink.json

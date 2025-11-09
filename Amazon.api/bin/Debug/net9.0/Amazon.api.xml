@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Amazon.api</name>
+    </assembly>
+    <members>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetOrders">
+            <summary>
+            Recupera todas las órdenes registradas en el sistema.
+            </summary>
+            <remarks>
+            Devuelve una lista completa de órdenes con sus respectivos datos mapeados al DTO.
+            </remarks>
+            <returns>Lista de órdenes</returns>
+            <response code="200">Retorna todas las órdenes</response>
+            <response code="500">Error interno del servidor</response>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetOrderId(System.Int32)">
+            <summary>
+            Obtiene una orden específica por su identificador.
+            </summary>
+            <param name="id">ID único de la orden</param>
+            <returns>Orden encontrada</returns>
+            <response code="200">Orden encontrada</response>
+            <response code="404">No se encontró la orden</response>
+            <response code="500">Error interno del servidor</response>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.CreateSimpleOrder(Amazon.Core.CustomEntities.CrearOrdenRequest)">
+            <summary>
+            Crea una nueva orden simple.
+            </summary>
+            <remarks>
+            Este endpoint permite registrar una nueva orden en el sistema validando los datos de entrada.
+            </remarks>
+            <param name="CrearOrden">Objeto con la información de la orden</param>
+            <returns>Orden creada</returns>
+            <response code="200">Orden creada exitosamente</response>
+            <response code="400">Error de validación</response>
+            <response code="500">Error interno del servidor</response>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.DeleteOrderDtoMapper(System.Int32)">
+            <summary>
+            Elimina una orden por su identificador.
+            </summary>
+            <param name="id">ID de la orden</param>
+            <response code="204">Orden eliminada correctamente</response>
+            <response code="500">Error interno del servidor</response>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetUserCartDtoMapper(System.Int32)">
+            <summary>
+            Obtiene el carrito actual del usuario.
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <returns>Orden con estado de carrito</returns>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.IntroduceItemCart(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Inserta un producto en el carrito del usuario.
+            </summary>
+            <param name="productId">ID del producto</param>
+            <param name="orderId">ID de la orden (carrito)</param>
+            <param name="quantity">Cantidad del producto</param>
+            <returns>Producto agregado al carrito</returns>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.EliminarItemCarrito(System.Int32,System.Int32)">
+            <summary>
+            Elimina un producto del carrito del usuario.
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <param name="productId">ID del producto a eliminar</param>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.ProcessPaymentAsync(System.Int32)">
+            <summary>
+            Procesa el pago del carrito del usuario.
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <returns>Resultado del pago</returns>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetUserOrders(System.Int32)">
+            <summary>
+            Obtiene todas las órdenes pagadas del usuario.
+            </summary>
+            <param name="userId">ID del usuario</param>
+            <returns>Lista de órdenes completadas</returns>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetReporteMensualVentas">
+            <summary>
+            Obtiene el reporte mensual de ventas.
+            </summary>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetBoardStats">
+            <summary>
+            Obtiene estadísticas generales del tablero.
+            </summary>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetTopProductosVendidos">
+            <summary>
+            Obtiene los productos más vendidos.
+            </summary>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetLowStockProductResponse">
+            <summary>
+            Obtiene los productos con bajo stock.
+            </summary>
+        </member>
+        <member name="M:Amazon.Api.Controllers.OrdersController.GetTopUsersBySpending">
+            <summary>
+            Obtiene los usuarios con mayor gasto total.
+            </summary>
+        </member>
+        <member name="M:Amazon.api.Controllers.PaymentsController.GetPaymentById(System.Int32)">
+            <summary>
+            Obtiene un pago específico por su identificador único
+            </summary>
+            <remarks>
+            Este endpoint recupera la información completa de un pago utilizando su ID único.
+            Incluye detalles como monto, estado, fecha de creación y relación con la orden.
+            
+            Ejemplo de uso:
+            GET /api/Payments/1
+            </remarks>
+            <param name="id">Identificador único del pago (mayor a 0)</param>
+            <returns>Información detallada del pago solicitado</returns>
+            <response code="200">Retorna el pago encontrado exitosamente</response>
+            <response code="400">Error en la validación del ID del pago</response>
+            <response code="404">No se encontró el pago con el ID especificado</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.PaymentsController.GetPaymentByOrderId(System.Int32)">
+            <summary>
+            Obtiene el pago asociado a una orden específica
+            </summary>
+            <remarks>
+            Este endpoint recupera la información del pago vinculado a una orden particular.
+            Útil para verificar el estado de pago de una orden existente.
+            
+            Ejemplo de uso:
+            GET /api/Payments/order/5
+            </remarks>
+            <param name="orderId">Identificador único de la orden (mayor a 0)</param>
+            <returns>Información del pago asociado a la orden</returns>
+            <response code="200">Retorna el pago asociado a la orden exitosamente</response>
+            <response code="400">Error en la validación del ID de la orden</response>
+            <response code="404">No se encontró pago para la orden especificada</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.PaymentsController.GetAllPayments">
+            <summary>
+            Obtiene todos los pagos registrados en el sistema
+            </summary>
+            <remarks>
+            Este endpoint recupera una lista completa de todos los pagos existentes en el sistema.
+            Los resultados incluyen pagos en todos los estados (Pending, Completed, Failed).
+            
+            Ejemplo de uso:
+            GET /api/Payments
+            </remarks>
+            <returns>Lista completa de todos los pagos del sistema</returns>
+            <response code="200">Retorna la lista de pagos exitosamente</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.GetAllProducts">
+            <summary>
+            Obtiene todos los productos registrados en el sistema
+            </summary>
+            <remarks>
+            Este endpoint recupera una lista completa de todos los productos disponibles en el catálogo.
+            Incluye información básica como nombre, categoría, precio y stock de cada producto.
+            
+            Ejemplo de uso:
+            GET /api/Products
+            </remarks>
+            <returns>Lista completa de todos los productos del sistema</returns>
+            <response code="200">Retorna la lista de productos exitosamente</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.GetbyId(System.Int32)">
+            <summary>
+            Obtiene un producto específico por su identificador único
+            </summary>
+            <remarks>
+            Este endpoint recupera la información completa de un producto utilizando su ID único.
+            Incluye detalles como descripción, precio, stock, categoría e información del vendedor.
+            
+            Ejemplo de uso:
+            GET /api/Products/5
+            </remarks>
+            <param name="id">Identificador único del producto (mayor a 0)</param>
+            <returns>Información detallada del producto solicitado</returns>
+            <response code="200">Retorna el producto encontrado exitosamente</response>
+            <response code="400">Error en la validación del ID del producto</response>
+            <response code="404">No se encontró el producto con el ID especificado</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.InsertProduct(Amazon.infrastructure.DTOs.ProductDto)">
+            <summary>
+            Crea un nuevo producto en el sistema
+            </summary>
+            <remarks>
+            Este endpoint permite registrar un nuevo producto en el catálogo de Amazon.
+            Requiere validación de datos y verificación de que el vendedor exista.
+            
+            Ejemplo de body:
+            {
+              "name": "Laptop Gaming",
+              "description": "Laptop para gaming de alta performance",
+              "price": 1500.00,
+              "stock": 10,
+              "category": "Electrónicos",
+              "sellerId": 1
+            }
+            </remarks>
+            <param name="productDto">Datos del producto a crear</param>
+            <returns>Producto creado con su identificador asignado</returns>
+            <response code="200">Producto creado exitosamente</response>
+            <response code="400">Error en la validación de datos o vendedor no existe</response>
+            <response code="500">Error interno del servidor al crear el producto</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.UpdateProduct(System.Int32,Amazon.infrastructure.DTOs.ProductDto)">
+            <summary>
+            Actualiza la información de un producto existente
+            </summary>
+            <remarks>
+            Este endpoint permite modificar la información de un producto existente en el sistema.
+            Todos los campos del producto pueden ser actualizados excepto el ID.
+            
+            Ejemplo de uso:
+            PUT /api/Products/5
+            </remarks>
+            <param name="id">Identificador único del producto a actualizar</param>
+            <param name="productDto">Nuevos datos del producto</param>
+            <returns>Producto actualizado con la nueva información</returns>
+            <response code="200">Producto actualizado exitosamente</response>
+            <response code="400">Error de validación o IDs no coinciden</response>
+            <response code="404">No se encontró el producto a actualizar</response>
+            <response code="500">Error interno del servidor al actualizar</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.DeleteProductDtoMapper(System.Int32)">
+            <summary>
+            Elimina un producto del sistema
+            </summary>
+            <remarks>
+            Este endpoint permite eliminar permanentemente un producto del catálogo.
+            La eliminación es irreversible y requiere que el producto exista.
+            
+            Ejemplo de uso:
+            DELETE /api/Products/5
+            </remarks>
+            <param name="id">Identificador único del producto a eliminar</param>
+            <returns>Respuesta sin contenido (204) si la eliminación fue exitosa</returns>
+            <response code="204">Producto eliminado exitosamente</response>
+            <response code="404">No se encontró el producto a eliminar</response>
+            <response code="500">Error interno del servidor al eliminar</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.GetProductsByCategory(System.String)">
+            <summary>
+            Obtiene productos filtrados por categoría específica
+            </summary>
+            <remarks>
+            Este endpoint recupera todos los productos que pertenecen a una categoría específica.
+            Útil para filtrar productos por tipo (Electrónicos, Ropa, Hogar, etc.).
+            
+            Ejemplo de uso:
+            GET /api/Products/category/Electrónicos
+            </remarks>
+            <param name="category">Nombre de la categoría a filtrar</param>
+            <returns>Lista de productos que pertenecen a la categoría especificada</returns>
+            <response code="200">Retorna los productos de la categoría exitosamente</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.GetProductsBySeller(System.Int32)">
+            <summary>
+            Obtiene todos los productos de un vendedor específico
+            </summary>
+            <remarks>
+            Este endpoint recupera el catálogo completo de productos de un vendedor particular.
+            Útil para ver todos los productos que un vendedor tiene registrados en el sistema.
+            
+            Ejemplo de uso:
+            GET /api/Products/seller/1
+            </remarks>
+            <param name="sellerId">Identificador único del vendedor</param>
+            <returns>Lista de productos asociados al vendedor especificado</returns>
+            <response code="200">Retorna los productos del vendedor exitosamente</response>
+            <response code="400">Error en la validación del ID del vendedor</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.UpdateStock(System.Int32,System.Int32)">
+            <summary>
+            Actualiza el stock de un producto específico
+            </summary>
+            <remarks>
+            Este endpoint permite modificar únicamente la cantidad en stock de un producto.
+            Útil para gestionar inventario sin modificar otros datos del producto.
+            
+            Ejemplo de uso:
+            PATCH /api/Products/5/stock/25
+            </remarks>
+            <param name="id">Identificador único del producto</param>
+            <param name="quantity">Nueva cantidad en stock (debe ser mayor a 0)</param>
+            <returns>Producto con el stock actualizado</returns>
+            <response code="200">Stock actualizado exitosamente</response>
+            <response code="400">Error de validación o cantidad inválida</response>
+            <response code="404">No se encontró el producto</response>
+            <response code="500">Error interno del servidor al actualizar</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.ProductsController.Test">
+            <summary>
+            Endpoint de prueba para verificar el funcionamiento del controlador
+            </summary>
+            <remarks>
+            Este endpoint permite verificar que el controlador de productos esté funcionando correctamente.
+            No realiza operaciones sobre la base de datos, solo retorna un mensaje de confirmación.
+            
+            Ejemplo de uso:
+            GET /api/Products/test
+            </remarks>
+            <returns>Mensaje de confirmación del funcionamiento</returns>
+            <response code="200">API funcionando correctamente</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.UsersController.GetAllUsers">
+            <summary>
+            Obtiene todos los usuarios registrados en el sistema
+            </summary>
+            <remarks>
+            Este endpoint recupera una lista completa de todos los usuarios del sistema.
+            Incluye información básica como nombre, email y saldo de billetera.
+            </remarks>
+            <returns>Lista completa de todos los usuarios del sistema</returns>
+            <response code="200">Retorna la lista de usuarios exitosamente</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.UsersController.GetUserById(System.Int32)">
+            <summary>
+            Obtiene un usuario específico por su identificador único
+            </summary>
+            <remarks>
+            Este endpoint recupera la información completa de un usuario utilizando su ID único.
+            Incluye detalles como nombre, email, saldo de billetera y fecha de creación.
+            </remarks>
+            <param name="id">Identificador único del usuario (mayor a 0)</param>
+            <returns>Información detallada del usuario solicitado</returns>
+            <response code="200">Retorna el usuario encontrado exitosamente</response>
+            <response code="400">Error en la validación del ID del usuario</response>
+            <response code="404">No se encontró el usuario con el ID especificado</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.UsersController.CreateUser(Amazon.infrastructure.DTOs.UserDto)">
+            <summary>
+            Crea un nuevo usuario en el sistema
+            </summary>
+            <remarks>
+            Este endpoint permite registrar un nuevo usuario en el sistema Amazon.
+            Requiere validación de datos y verificación de que el email no esté registrado.
+            </remarks>
+            <param name="userDto">Datos del usuario a crear</param>
+            <returns>Usuario creado con su identificador asignado</returns>
+            <response code="200">Usuario creado exitosamente</response>
+            <response code="400">Error en la validación de datos o email ya registrado</response>
+            <response code="500">Error interno del servidor al crear el usuario</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.UsersController.UpdateUser(System.Int32,Amazon.infrastructure.DTOs.UserDto)">
+            <summary>
+            Actualiza la información de un usuario existente
+            </summary>
+            <remarks>
+            Este endpoint permite modificar la información de un usuario existente en el sistema.
+            Todos los campos del usuario pueden ser actualizados excepto el ID.
+            </remarks>
+            <param name="id">Identificador único del usuario a actualizar</param>
+            <param name="userDto">Nuevos datos del usuario</param>
+            <returns>Usuario actualizado con la nueva información</returns>
+            <response code="200">Usuario actualizado exitosamente</response>
+            <response code="400">Error de validación o IDs no coinciden</response>
+            <response code="404">No se encontró el usuario a actualizar</response>
+            <response code="500">Error interno del servidor al actualizar</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.UsersController.DeleteUser(System.Int32)">
+            <summary>
+            Elimina un usuario del sistema
+            </summary>
+            <remarks>
+            Este endpoint permite eliminar permanentemente un usuario del sistema.
+            La eliminación es irreversible y requiere que el usuario exista.
+            </remarks>
+            <param name="id">Identificador único del usuario a eliminar</param>
+            <returns>Respuesta sin contenido (204) si la eliminación fue exitosa</returns>
+            <response code="204">Usuario eliminado exitosamente</response>
+            <response code="404">No se encontró el usuario a eliminar</response>
+            <response code="500">Error interno del servidor al eliminar</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.UsersController.GetUserBalance(System.Int32)">
+            <summary>
+            Obtiene el saldo de billetera de un usuario específico
+            </summary>
+            <remarks>
+            Este endpoint recupera únicamente el saldo actual de la billetera de un usuario.
+            Útil para consultas rápidas de saldo sin cargar toda la información del usuario.
+            </remarks>
+            <param name="id">Identificador único del usuario</param>
+            <returns>Saldo actual de la billetera del usuario</returns>
+            <response code="200">Retorna el saldo de billetera exitosamente</response>
+            <response code="400">Error en la validación del ID del usuario</response>
+            <response code="404">No se encontró el usuario especificado</response>
+            <response code="500">Error interno del servidor al procesar la solicitud</response>
+        </member>
+        <member name="M:Amazon.api.Controllers.UsersController.Wallet(System.Int32,System.Decimal)">
+            <summary>
+            Recarga saldo en la billetera de un usuario
+            </summary>
+            <remarks>
+            Este endpoint permite agregar saldo a la billetera de un usuario existente.
+            El monto puede ser positivo (recarga) o negativo (debito).
+            </remarks>
+            <param name="id">Identificador único del usuario</param>
+            <param name="amount">Monto a recargar en la billetera</param>
+            <returns>Usuario con el saldo actualizado</returns>
+            <response code="200">Billetera recargada exitosamente</response>
+            <response code="404">No se encontró el usuario especificado</response>
+            <response code="500">Error interno del servidor al procesar la recarga</response>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Punto de entrada principal de la aplicación Amazon API
+            </summary>
+            <remarks>
+            Esta clase configura y ejecuta la API REST de Amazon que incluye:
+            - Gestión de usuarios, productos, órdenes y pagos
+            - Validación automática de datos con FluentValidation
+            - Documentación automática con Swagger/OpenAPI
+            - Configuración de base de datos SQL Server
+            - Manejo global de excepciones y validaciones
+            </remarks>
+        </member>
+        <member name="M:Program.Main(System.String[])">
+            <summary>
+            Método principal que configura y ejecuta la aplicación web
+            </summary>
+            <param name="args">Argumentos de línea de comandos para la configuración</param>
+            <remarks>
+            El pipeline de ejecución incluye:
+            1. Configuración de servicios y dependencias
+            2. Configuración de base de datos y Entity Framework
+            3. Registro de servicios de aplicación
+            4. Configuración de controladores y serialización JSON
+            5. Configuración de Swagger para documentación API
+            6. Configuración de validadores FluentValidation
+            7. Middleware de autenticación y autorización
+            8. Mapeo de endpoints de controladores
+            </remarks>
+        </member>
+    </members>
+</doc>
